@@ -41,5 +41,8 @@ group :development, :test do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+  # Table print gem lets you output tables in the rails console with tp `Object.all` or similar
+  gem "table_print"
 end
 
