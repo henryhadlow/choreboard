@@ -11,11 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150321113033) do
+ActiveRecord::Schema.define(version: 20150321120057) do
 
   create_table "chores", force: :cascade do |t|
     t.string   "name"
-    t.datetime "last_done"
+    t.date     "last_done"
     t.integer  "every_x_days"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
