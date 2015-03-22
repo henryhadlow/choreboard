@@ -8,23 +8,17 @@
   @due_date = @chore.last_done + @chore.every_x_days.days
   @days_elapsed = (Date.today - @chore.last_done).to_int
 
-  case @days_elapsed
-    when 0
-      @last_done = "today"
-    when 1
-      @last_done = "yesterday"
-    when 2..6
-      @last_done = @days_elapsed.to_s + " days ago"
-    when 7
-      @last_done = "a week ago"
-    else
-      @last_done = "more than a week ago"
+  if Date.today - @chore.last_done == 1
+    @last_done = "yesterday"
+  else
+    @last_done = distance_of_time_in_words(@chore.last_done, Date.today) + " ago"
   end
+  puts @last_done
 %>
 
 <p>
 <% if Date.today == @chore.last_done %>
-  You already did this today
+  You did this today
 <% elsif Date.today < @due_date %>
   You last did this <%= @last_done %>
 <% else %>
