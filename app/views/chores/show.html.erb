@@ -23,6 +23,7 @@
   You last did this <%= @last_done %>
 <% else %>
   Hey, you last did this <%= @last_done %>
+  <% content_for :body_class, "overdue" %>
 <% end %>
 </p>
 
