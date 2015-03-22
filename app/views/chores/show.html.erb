@@ -1,18 +1,35 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
   <%= @chore.name %>
 </p>
 
-<p>
-  <strong>Last done:</strong>
-  <%= @chore.last_done %>
-</p>
+<%
+  @due_date = @chore.last_done + @chore.every_x_days.days
+  @days_elapsed = (Date.today - @chore.last_done).to_int
+
+  case @days_elapsed
+    when 0
+      @last_done = "today"
+    when 1
+      @last_done = "yesterday"
+    when 2..6
+      @last_done = @days_elapsed.to_s + " days ago"
+    when 7
+      @last_done = "a week ago"
+    else
+      @last_done = "more than a week ago"
+  end
+%>
 
 <p>
-  <strong>Every x days:</strong>
-  <%= @chore.every_x_days %>
+<% if Date.today == @chore.last_done %>
+  You already did this today
+<% elsif Date.today < @due_date %>
+  You last did this <%= @last_done %>
+<% else %>
+  Hey, you last did this <%= @last_done %>
+<% end %>
 </p>
 
 <%= link_to 'Edit', edit_chore_path(@chore) %> |
