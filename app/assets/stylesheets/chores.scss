@@ -1,9 +1,12 @@
 
 @import "normalize";
+@import "grid-layout";
+
 body {
   font-size: 32px;
   line-height: 1.25;
   font-family: 'Montserrat', "Avenir Next", "Helvetica Neue", "Helvetica", sans-serif;
+  @extend %site-width-container;
 }
 
 .overdue {
